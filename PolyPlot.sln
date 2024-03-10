@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyPlot.Drawing", "PolyPlot.Drawing\PolyPlot.Drawing.csproj", "{0BC10494-3064-449F-AF3F-F9BB7AA96D25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyPlot.Drawing.Console", "PolyPlot.Drawing.Console\PolyPlot.Drawing.Console.csproj", "{A873D8BA-EF55-4B96-BD41-97EB67E42837}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyPlot.Widgets", "PolyPlot.Widgets\PolyPlot.Widgets.csproj", "{BDBF697F-10EA-4D4F-8A45-DB886EB8EC31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyPlot.App", "PolyPlot.App\PolyPlot.App.csproj", "{3FEA4403-5FBD-4A7F-8326-F3E72A668A27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyPlot.Drawing.Console.Tests", "PolyPlot.Drawing.Console.Tests\PolyPlot.Drawing.Console.Tests.csproj", "{7C238D44-DA9D-47DA-8DAF-F6BA333B42F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyPlot.Widgets.Tests", "PolyPlot.Widgets.Tests\PolyPlot.Widgets.Tests.csproj", "{DDE506A8-3DFB-418F-905E-8FB84EE862BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyPlot.App.IntegrationTests", "PolyPlot.App.IntegrationTests\PolyPlot.App.IntegrationTests.csproj", "{0C6417DA-C3A2-4987-AD2B-1C9AC9FE1099}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BC10494-3064-449F-AF3F-F9BB7AA96D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BC10494-3064-449F-AF3F-F9BB7AA96D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BC10494-3064-449F-AF3F-F9BB7AA96D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BC10494-3064-449F-AF3F-F9BB7AA96D25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A873D8BA-EF55-4B96-BD41-97EB67E42837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A873D8BA-EF55-4B96-BD41-97EB67E42837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A873D8BA-EF55-4B96-BD41-97EB67E42837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A873D8BA-EF55-4B96-BD41-97EB67E42837}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDBF697F-10EA-4D4F-8A45-DB886EB8EC31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDBF697F-10EA-4D4F-8A45-DB886EB8EC31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDBF697F-10EA-4D4F-8A45-DB886EB8EC31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDBF697F-10EA-4D4F-8A45-DB886EB8EC31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FEA4403-5FBD-4A7F-8326-F3E72A668A27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FEA4403-5FBD-4A7F-8326-F3E72A668A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FEA4403-5FBD-4A7F-8326-F3E72A668A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FEA4403-5FBD-4A7F-8326-F3E72A668A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C238D44-DA9D-47DA-8DAF-F6BA333B42F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C238D44-DA9D-47DA-8DAF-F6BA333B42F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C238D44-DA9D-47DA-8DAF-F6BA333B42F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C238D44-DA9D-47DA-8DAF-F6BA333B42F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDE506A8-3DFB-418F-905E-8FB84EE862BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDE506A8-3DFB-418F-905E-8FB84EE862BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDE506A8-3DFB-418F-905E-8FB84EE862BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDE506A8-3DFB-418F-905E-8FB84EE862BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C6417DA-C3A2-4987-AD2B-1C9AC9FE1099}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C6417DA-C3A2-4987-AD2B-1C9AC9FE1099}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C6417DA-C3A2-4987-AD2B-1C9AC9FE1099}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C6417DA-C3A2-4987-AD2B-1C9AC9FE1099}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
