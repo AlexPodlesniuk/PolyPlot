@@ -14,15 +14,51 @@ dotnet run
 
 # Solution structure
 
-Current solution is based on 3 main modules:
-1. Widgets: contains all the widgets that can be used to build the plot
-2. Drawing: contains all abstractions and specific implementations for drawing the plot (e.g. console, file, etc.)
-3. App: deployable application that uses the widgets and drawing modules
+The current solution is based on three main modules:
+
+1. **Widgets**: Contains all the widgets that can be used to build the plot.
+2. **Drawing**: Contains all abstractions and specific implementations for drawing the plot (e.g., console, file, etc.).
+3. **App**: A deployable application that utilizes the Widgets and Drawing modules.
+```
+        +-------------+
+        |     App     |
+        +-------------+         Application configuration, logging, and startup activities
+               |
+               v
+-------------------------------------
+     +---------------------+
+     |      Drawing        |
+     +---------------------+
+               |
+    +----------+-----------+
+    |                      |        Drawing contracts and specific implementations
+    v                      v
++-------+             +--------+
+|Console|             |  File  |
++-------+             +--------+
+               |
+               v
+-------------------------------------
+        +-------------+
+        |   Widgets   |
+        +-------------+
+               |
+    +----------+----------+----------+        Widget models and main geometrical operations
+    |          |          |          |
+    v          v          v          v
++-------+  +-------+  +--------+  +--------+
+| Square|  |Rectangle| | Circle |  |Ellipse |
++-------+  +-------+  +--------+  +--------+
+                |
+                v
+           +---------+
+           | TextBox |
+           +---------+
+```
 
 ### Widgets
 
-The main responsibilities for the widgets module are share representation models and main geometrical operations on them.
-The designed widget structure is flat with no complex hierarchy, which makes it easy to use and extend.
+The primary responsibility of the Widgets module is to share representation models and main geometrical operations on them. The designed widget structure is flat, with no complex hierarchy, making it easy to use and extend.
 ```
                         +--------+
                         | Widget |
@@ -42,34 +78,36 @@ The designed widget structure is flat with no complex hierarchy, which makes it 
   | TextBox |
   +---------+
 ```
-Despite intuition might suggest that Rectangle and Square (as well as Ellipse and Circle) should be in the same type group, it can easily lead 
-design limitation (we won't be able to freely change the type of the widget according to our need) as well as LSP violation if we will start to break
-contracts from inheritence relationship.
+Despite what intuition might suggest, Rectangle and Square (as well as Ellipse and Circle) are not grouped together. This approach avoids design limitations (preventing free changes to the widget type as needed) and potential Liskov Substitution Principle (LSP) violations from inheritance relationships.
 
-An opposite decision was made for the TextBox widget, which was defined a special case of the Rectangle widget. On design level, it is agreed that all
-Rectangle invariants and contracts will be applicable for a Textbox as well.
+Conversely, the TextBox widget is defined as a special case of the Rectangle widget. At the design level, it is agreed that all Rectangle invariants and contracts are applicable to a TextBox as well.
 
-Dimensions are represented as different types in order to ensure type safety (Width should not be replaced with Height) 
-as well as validating invariants like: "Height should be positive".
+Dimensions are represented as different types to ensure type safety (e.g., preventing Width from being replaced with Height) and to validate invariants, such as "Height must be positive."
 
 ### Drawing
 
-Defines abstractions that will be required for specific drawing implementations:
-ISurface - represents a surface where the plot will be drawn
-IDrawable - represents a specifc for shape rendering logic
-IRenderOutput - represents a rendered output that surface will use
+Defines abstractions required for specific drawing implementations:
+
+`ISurface`: Represents a surface where the plot will be drawn.
+
+`IDrawable`: Represents specific logic for shape rendering.
+
+`IRenderOutput`: Represents the rendered output that the surface will use.
 
 ### Drawing.Console
 
-Contains specific implementation for drawing the plot in the console. It uses System.Console to draw the plot.
-The main responsibilities for this module are to implement renderers for supported shapes and to provide a specific rendering logic for the console.
+Contains the specific implementation for drawing the plot in the console, using System.Console. The main responsibilities of this module are to implement renderers for supported shapes and provide specific rendering logic for the console.
+
+Drawing.* provides one of the main extensibility points for the solution. It allows us to add new rendering implementations (e.g., Drawing.File, Drawing.Web, etc.) without changing the core logic of the app.
 
 ### App
-As a deployable unit, we are using .NET 8 console application. It uses generic host to configure and resolve dependencies.
-The main responsibilities are app configuration, logging, startup activities.
-
+As a deployable unit, we use a .NET 8 console application. It employs a generic host to configure and resolve dependencies. The main responsibilities include app configuration, logging, and startup activities.
 
 #### Future considerations:
-1. We can consider using structs instead of classes for the widgets. Potentially it can improve performance and reduce memory footprint
-2. We will need to define a proper rendering standard. For now we are using IRenderOutput.cs but it is obviously not enough to represent the different output aspects
-3. Validation of the input data. For now we are throwing exception on every non valid argument (like negative height or width) that is not really user friendly. We should implement some middleware that will convert exception into user messages or smth like this
+**Type hierarchy**: We might consider using structs instead of classes for the widgets. This could potentially improve performance and reduce the memory footprint.
+
+**Performance Optimization**: We might consider using structs instead of classes for the widgets. This could potentially improve performance and reduce the memory footprint.
+
+**Rendering Standard**: We need to define a proper rendering standard. Currently, we use IRenderOutput.cs, but it is obviously not sufficient to represent the different output aspects.
+
+**Input Validation**: Currently, we throw an exception for every invalid argument (like negative height or width), which is not user-friendly. Implementing some middleware that converts exceptions into user messages or something similar should be considered.
