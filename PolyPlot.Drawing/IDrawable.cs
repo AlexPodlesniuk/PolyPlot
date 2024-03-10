@@ -5,5 +5,5 @@ namespace PolyPlot.Drawing;
 public interface IDrawable
 {
     bool CanDraw(Widget widget);
-    void Draw(Widget widget);
+    IRenderOutput Draw(Widget widget);
 }

@@ -5,21 +5,21 @@ namespace PolyPlot.Drawing.Console;
 public sealed class ConsoleSurface : ISurface
 {
     private readonly List<Widget> _widgets = new ();
-    private readonly IConsoleOutput _consoleOutput;
+    private readonly IConsolePrinter _consolePrinter;
     private readonly IEnumerable<IDrawable> _drawables;
 
 
-    public ConsoleSurface(IConsoleOutput consoleOutput, IEnumerable<IDrawable> drawables)
+    public ConsoleSurface(IConsolePrinter consolePrinter, IEnumerable<IDrawable> drawables)
     {
-        _consoleOutput = consoleOutput;
+        _consolePrinter = consolePrinter;
         _drawables = drawables;
     }
 
     public void AddWidget(Widget widget) => _widgets.Add(widget);
 
-    public void Draw()
+    public void Render()
     {
-        _consoleOutput.WriteLine("""
+        _consolePrinter.WriteLine("""
                                  ----------------------------------------------------------------
                                  Requested Drawing
                                  ----------------------------------------------------------------
@@ -32,8 +32,13 @@ public sealed class ConsoleSurface : ISurface
                 throw new InvalidOperationException($"No drawable found for widget {widget.GetType()}");
             }
 
-            drawable.Draw(widget);
+            if (drawable.Draw(widget) is not ConsoleRenderOutput output)
+            {
+                throw new InvalidOperationException($"Drawable {drawable.GetType()} returned invalid output");
+            }
+            
+            _consolePrinter.WriteLine(output.RenderedOutput);
         }
-        _consoleOutput.WriteLine("----------------------------------------------------------------");
+        _consolePrinter.WriteLine("----------------------------------------------------------------");
     }
 }

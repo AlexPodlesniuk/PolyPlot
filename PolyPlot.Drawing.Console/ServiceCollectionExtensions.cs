@@ -13,6 +13,6 @@ public static class ServiceCollectionExtensions
             .WithTransientLifetime());
 
         services.AddTransient<ISurface, ConsoleSurface>();
-        services.AddTransient<IConsoleOutput, ConsoleOutput>();
+        services.AddTransient<IConsolePrinter, ConsolePrinter>();
     }
 }

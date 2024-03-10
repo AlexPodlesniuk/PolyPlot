@@ -6,7 +6,7 @@ namespace PolyPlot.Drawing.Console.Tests.Drawers;
 public class EllipseConsoleDrawableTests : ConsoleDrawingTestsBase<Ellipse>
 {
     protected override Ellipse CreateDrawableWidget() => CreateEllipse();
-    protected override IDrawable CreateDrawable() => new EllipseConsoleDrawable(ConsoleOutput);
+    protected override IDrawable CreateDrawable() => new EllipseConsoleDrawable();
 
     protected override string ExpectedOutput(Ellipse widget) =>
         $"Ellipse {widget.Position} diameterH = {widget.HorizontalDiameter} diameterV = {widget.VerticalDiameter}";

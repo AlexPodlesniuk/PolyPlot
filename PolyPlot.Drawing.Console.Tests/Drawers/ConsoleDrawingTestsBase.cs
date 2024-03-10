@@ -6,7 +6,7 @@ namespace PolyPlot.Drawing.Console.Tests.Drawers;
 
 public abstract class ConsoleDrawingTestsBase<T> : TestBase where T : Widget
 {
-    protected readonly IConsoleOutput ConsoleOutput = Substitute.For<IConsoleOutput>();
+    protected readonly IConsolePrinter ConsolePrinter = Substitute.For<IConsolePrinter>();
     
     protected abstract T CreateDrawableWidget();
     protected abstract IDrawable CreateDrawable();
@@ -31,8 +31,8 @@ public abstract class ConsoleDrawingTestsBase<T> : TestBase where T : Widget
     {
         var widget = CreateDrawableWidget();
         var drawable = CreateDrawable();
-        drawable.Draw(widget);
+        var res = (ConsoleRenderOutput)drawable.Draw(widget);
 
-        ConsoleOutput.Received(1).WriteLine(Arg.Is(ExpectedOutput(widget)));
+        res.RenderedOutput.Should().Be(ExpectedOutput(widget));
     }
 }

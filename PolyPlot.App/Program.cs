@@ -47,6 +47,6 @@ public static class Program
                 Height.Of(100), "sample text")
         );
 
-        surface.Draw();
+        surface.Render();
     }
 }

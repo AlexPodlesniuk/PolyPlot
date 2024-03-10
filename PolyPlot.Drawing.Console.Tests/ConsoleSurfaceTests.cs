@@ -6,14 +6,14 @@ namespace PolyPlot.Drawing.Console.Tests;
 
 public class ConsoleSurfaceTests : TestBase
 {
-    private readonly IConsoleOutput _consoleOutput = Substitute.For<IConsoleOutput>();
+    private readonly IConsolePrinter _consolePrinter = Substitute.For<IConsolePrinter>();
     
     [Fact]
     public void Draw_WithNoWidgets_PrintsOnlyHeaderAndFooter()
     {
         var drawables = Enumerable.Empty<IDrawable>();
-        var surface = new ConsoleSurface(_consoleOutput, drawables);
-        surface.Draw();
+        var surface = new ConsoleSurface(_consolePrinter, drawables);
+        surface.Render();
         
         var expectedOutput1 = """
                              ----------------------------------------------------------------
@@ -22,19 +22,19 @@ public class ConsoleSurfaceTests : TestBase
                              """;
         var expectedOutput2 = "----------------------------------------------------------------";
         
-        _consoleOutput.Received(1).WriteLine(Arg.Is(expectedOutput1));
-        _consoleOutput.Received(1).WriteLine(Arg.Is(expectedOutput2));
+        _consolePrinter.Received(1).WriteLine(Arg.Is(expectedOutput1));
+        _consolePrinter.Received(1).WriteLine(Arg.Is(expectedOutput2));
     }
     
     [Fact]
     public void Draw_ThrowsException_WhenWidgetDrawerNotFound()
     {
         var drawables = Enumerable.Empty<IDrawable>();
-        var surface = new ConsoleSurface(_consoleOutput, drawables);
+        var surface = new ConsoleSurface(_consolePrinter, drawables);
         var widget = CreateDummyWidget();
         surface.AddWidget(widget);
         
-        var act = () => surface.Draw();
+        var act = () => surface.Render();
         
         act.Should().Throw<InvalidOperationException>().WithMessage($"No drawable found for widget {widget.GetType()}");
     }
@@ -42,18 +42,18 @@ public class ConsoleSurfaceTests : TestBase
     [Fact]
     public void Draw_DrawsWidget_WhenWidgetAddedAndDrawerExists()
     {
-        var circleDrawer = new CircleConsoleDrawable(_consoleOutput);
-        var squareDrawer = new SquareConsoleDrawable(_consoleOutput);
+        var circleDrawer = new CircleConsoleDrawable();
+        var squareDrawer = new SquareConsoleDrawable();
         var drawables = new IDrawable[] { circleDrawer, squareDrawer };
-        var surface = new ConsoleSurface(_consoleOutput, drawables);
+        var surface = new ConsoleSurface(_consolePrinter, drawables);
         var circle = CreateCircle();
         var square = CreateSquare();
         surface.AddWidget(circle);
         surface.AddWidget(square);
         
-        surface.Draw();
+        surface.Render();
         
-        _consoleOutput.Received(1).WriteLine(Arg.Is($"Circle {circle.Position} size={circle.Size}"));
-        _consoleOutput.Received(1).WriteLine(Arg.Is($"Square {square.Position} size={square.Size}"));
+        _consolePrinter.Received(1).WriteLine(Arg.Is($"Circle {circle.Position} size={circle.Size}"));
+        _consolePrinter.Received(1).WriteLine(Arg.Is($"Square {square.Position} size={square.Size}"));
     }
 }

@@ -8,7 +8,7 @@ public class ConsoleOutputTests
     public void WhenDrawingCircle_ThenDrawsCircle()
     {
         using var capture = new ConsoleOutputCapture();
-        var consoleOutput = new ConsoleOutput();
+        var consoleOutput = new ConsolePrinter();
         
         consoleOutput.WriteLine("hello");
         
