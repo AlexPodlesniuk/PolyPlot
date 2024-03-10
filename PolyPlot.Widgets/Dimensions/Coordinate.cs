@@ -1,9 +1,9 @@
 namespace PolyPlot.Widgets.Dimensions;
 
-public record Coordinate(int X, int Y)
+public readonly struct Coordinate(int x, int y)
 {
     public override string ToString()
     {
-        return $"({X},{Y})";
+        return $"({x},{y})";
     }
 }

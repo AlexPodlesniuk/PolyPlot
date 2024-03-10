@@ -70,5 +70,6 @@ The main responsibilities are app configuration, logging, startup activities.
 
 
 #### Future considerations:
-1. We will need to define a proper rendering standard. For now we are using IRenderOutput.cs but it is obviously not enough to represent the different output aspects
-2. Validation of the input data. For now we are throwing exception on every non valid argument (like negative height or width) that is not really user friendly. We should implement some middleware that will convert exception into user messages or smth like this
+1. We can consider using structs instead of classes for the widgets. Potentially it can improve performance and reduce memory footprint
+2. We will need to define a proper rendering standard. For now we are using IRenderOutput.cs but it is obviously not enough to represent the different output aspects
+3. Validation of the input data. For now we are throwing exception on every non valid argument (like negative height or width) that is not really user friendly. We should implement some middleware that will convert exception into user messages or smth like this

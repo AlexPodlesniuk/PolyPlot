@@ -1,9 +1,9 @@
 namespace PolyPlot.Widgets.Dimensions;
 
-public record Width(int Value)
+public readonly struct Width(int value)
 {
-    public int Value { get;  } = Value <= 0 ? throw new ArgumentOutOfRangeException(nameof(Value), "Width must be positive") : Value;
-    public static Width Of(int value) => new Width(value);
+    public int Value { get;  } = value <= 0 ? throw new ArgumentOutOfRangeException(nameof(Value), "Width must be positive") : value;
+    public static Width Of(int value) => new (value);
     
     public override string ToString()
     {
