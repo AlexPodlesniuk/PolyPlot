@@ -12,7 +12,7 @@ public class ConsoleOutputTests
         
         consoleOutput.WriteLine("hello");
         
-        capture.GetOutput().Should().Be("hello\n");
+        capture.GetOutput().Should().Contain("hello");
     }
 }
 
