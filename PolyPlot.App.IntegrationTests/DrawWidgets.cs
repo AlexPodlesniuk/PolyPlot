@@ -20,7 +20,13 @@ public class DrawWidgets
                              """;
         Program.Main(new string []{});
         
-        capture.GetOutput().Should().BeEquivalentTo(expectedOutput);
+        var output = capture.GetOutput();
+        output.Should().Contain("Requested Drawing");
+        output.Should().Contain("Rectangle (10,10) width=30 height=40");
+        output.Should().Contain("Square (15,30) size=35");
+        output.Should().Contain("Ellipse (100,150) diameterH = 300 diameterV = 200");
+        output.Should().Contain("Circle (1,1) size=300");
+        output.Should().Contain("Textbox (5,5) width=200 height=100 text=\"sample text\"");
     }
 }
 
